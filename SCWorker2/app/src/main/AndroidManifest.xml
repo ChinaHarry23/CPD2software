@@ -37,7 +37,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".Signup"/>
-        <activity android:name=".TimeInPage"/>
+        <activity android:name=".TimeInPage"
+            android:windowSoftInputMode="adjustResize"/>
+
+
         <activity android:name=".forgotPass_Verify"/>
         <activity android:name=".forgotPass_Reset"/>
     </application>

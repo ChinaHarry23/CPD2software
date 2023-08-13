@@ -38,10 +38,10 @@
         android:id="@+id/timer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="timer"
+        android:text=""
         android:textSize="26sp"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/log"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/log"
         app:layout_constraintStart_toStartOf="@+id/log"
         app:layout_constraintTop_toTopOf="@+id/log" />
@@ -68,17 +68,16 @@
         android:textSize="16sp"
         app:backgroundTint="#008000"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.257"
+        app:layout_constraintEnd_toStartOf="@+id/requestButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logo1"
         app:layout_constraintVertical_bias="0.879" />
 
     <Button
-        android:id="@+id/overtimeButton"
+        android:id="@+id/requestButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Request OT"
+        android:text="Check OT Status"
         android:textSize="16sp"
         app:backgroundTint="#1581F3"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -100,6 +99,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logo1"
         app:layout_constraintVertical_bias="0.931" />
+
+    <TextView
+        android:id="@+id/timer_prompt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="26sp"
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/log"
+        app:layout_constraintTop_toBottomOf="@+id/logo1" />
 
     <Button
         android:id="@+id/weeklyLog"
@@ -128,6 +139,7 @@
         android:id="@+id/log"
         android:layout_width="410dp"
         android:layout_height="343dp"
+        android:fillViewport="true"
         android:contentDescription="Weekly Log"
         app:layout_constraintBottom_toTopOf="@+id/timeinButton"
         app:layout_constraintStart_toStartOf="parent"
@@ -150,11 +162,9 @@
         android:text="ph"
         android:textSize="18sp"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.043"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.377" />
+        app:layout_constraintBottom_toBottomOf="@+id/log"
+        app:layout_constraintEnd_toEndOf="@+id/log"
+        app:layout_constraintStart_toStartOf="@+id/log"
+        app:layout_constraintTop_toTopOf="@+id/log" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,17 +13,22 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
 import com.google.android.gms.location.FusedLocationProviderClient
 import java.text.SimpleDateFormat
 import java.util.Locale
 
 
-
+lateinit var timerPromt: TextView
 lateinit var countdown: TextView
 private var countdownTimer: CountDownTimer? = null
 val countdownHandler = Handler()
 var isTimerFinished = false
 lateinit var timeinButton: Button
+lateinit var requestButton: Button
 
 fun fetchLocation(
     context: Context,
@@ -96,13 +101,11 @@ fun formatDate(dateTime: String): String {
     return dateTime
 }
 
-fun startCountdownTimer(initialTimeMillis: Long = 10 * 1000L,context: Context) {
+fun startCountdownTimer(initialTimeMillis: Long = 10 * 1000L, context: Context, isOvertime: Boolean = false) {
     if (!::countdown.isInitialized) {
         Log.e("CountdownError", "Countdown TextView not initialized")
         return
     }
-
-    //val initialTimeMillis = 8 * 60 * 60 * 1000L // 8 hours in milliseconds
 
     var remainingTimeMillis = initialTimeMillis
 
@@ -119,31 +122,48 @@ fun startCountdownTimer(initialTimeMillis: Long = 10 * 1000L,context: Context) {
 
             if (remainingTimeMillis > 0) {
                 remainingTimeMillis -= 1000 // Decrease by 1 second
+                saveTimerState(context, remainingTimeMillis, false)
                 countdownHandler.postDelayed(this, 1000) // Update every second
-                saveTimerState(context,remainingTimeMillis, false)
             } else {
-                countdown.visibility = View.VISIBLE
-                countdown.text = "Good Job! Auto Timed Out..."
-                countdownHandler.removeCallbacks(this) // Stop the countdown
+                if (!isOvertime) {
+                    timerPromt.visibility = View.VISIBLE
+                    timerPromt.text = "Good Job! Auto Timed Out..."
+                    requestButton.text = "Request OT"
 
-                // Set the timer finished flag to true
-                isTimerFinished = true
-                timeinButton.performClick()
+                    // Set the timer finished flag to true
+                    isTimerFinished = true
+                    timeinButton.performClick()
 
 
+                    Handler(context.mainLooper).postDelayed({
+                        timerPromt.text = "Go Overtime?"
+                    }, 5000)
+                }else {
+                        requestButton.text = "Check OT status"
+                        timerPromt.visibility = View.VISIBLE
+                        timerPromt.text = "Good Job! Auto Timed Out..."
 
-                // Hide the "Time's up!" message after 3 seconds
-                Handler().postDelayed({
-                    countdown.text = "Go Overtime?" // Clear the countdown message
-                }, 5000)
+                        // Set the timer finished flag to true
+                        isTimerFinished = true
+                        timeinButton.performClick()
+
+                    // Hide the "Time's up!" message after 3 seconds
+                        Handler(context.mainLooper).postDelayed({
+                            timerPromt.text = "Nicely Done,OT finished!"
+                        }, 5000)
+
+                }
 
             }
         }
     })
 }
+
+
 fun stopCountdownTimer() {
-    countdownTimer?.cancel()
-    countdownTimer = null
+    countdownHandler.removeCallbacksAndMessages(null)
+    countdown.visibility = View.GONE
+    isTimerFinished = false // Reset the timer finished flag
 }
 fun saveTimerState(context: Context,remainingTimeMillis: Long, isTimerFinished: Boolean) {
     val sharedPreferences = context.getSharedPreferences("MyPreferences", Context.MODE_PRIVATE)
