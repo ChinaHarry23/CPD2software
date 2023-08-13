@@ -13,7 +13,6 @@ import android.widget.ProgressBar
 import android.widget.TableLayout
 import android.widget.TableRow
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.android.volley.Response
@@ -400,9 +399,46 @@ class TimeInPage : AppCompatActivity() {
                                             requestButton.setBackgroundColor(
                                                 ContextCompat.getColor(this, R.color.green))
                                             started = true
+                                        }else{
+                                            Log.d("RequestButton", "Inside request OT")
+                                            val queue = Volley.newRequestQueue(applicationContext)
+                                            val url = "http://192.168.100.13/login/finished_request.php"
+                                            val stringRequest: StringRequest =
+                                                object : StringRequest(
+                                                    Method.POST, url,
+                                                    Response.Listener { response ->
+                                                        progress.visibility = View.GONE
+                                                        try {
+                                                            val jsonObject = JSONObject(response)
+                                                            val status: String = jsonObject.getString("status")
+                                                            val message: String = jsonObject.getString("message")
+
+                                                            if (status == "success") {
+                                                                timerPromt.text = "OT requested"
+                                                                requestButton.text = "update Status"
+
+                                                            } else {
+                                                                texterror.text = message
+                                                                texterror.visibility = View.VISIBLE
+                                                            }
+
+                                                        } catch (e: JSONException) {
+                                                            e.printStackTrace()
+                                                        }
+                                                    },
+                                                    Response.ErrorListener { error ->
+                                                        progress.visibility = View.GONE
+                                                        texterror.text = "Error: ${error.message}"
+                                                        texterror.visibility = View.VISIBLE
+                                                    }) {
+                                                    override fun getParams(): Map<String, String>? {
+                                                        val paramV: MutableMap<String, String> = HashMap()
+                                                        paramV["phone"] = phone?:""
+                                                        return paramV
+                                                    }
+                                                }
+                                            queue.add(stringRequest)
                                             timeinButton.performClick()
-
-
                                         }
                                     }
                                     else -> {
@@ -433,6 +469,7 @@ class TimeInPage : AppCompatActivity() {
                     }
                  checkqueue.add(checkOTRequestStringRequest)
                 } else{
+
                 Log.d("RequestButton", "Inside request OT")
                 val queue = Volley.newRequestQueue(applicationContext)
                 val url = "http://192.168.100.13/login/request.php"

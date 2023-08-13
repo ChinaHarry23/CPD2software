@@ -13,10 +13,6 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
-import com.android.volley.Request
-import com.android.volley.Response
-import com.android.volley.toolbox.StringRequest
-import com.android.volley.toolbox.Volley
 import com.google.android.gms.location.FusedLocationProviderClient
 import java.text.SimpleDateFormat
 import java.util.Locale
@@ -133,7 +129,6 @@ fun startCountdownTimer(initialTimeMillis: Long = 10 * 1000L, context: Context, 
                     // Set the timer finished flag to true
                     isTimerFinished = true
                     timeinButton.performClick()
-
 
                     Handler(context.mainLooper).postDelayed({
                         timerPromt.text = "Go Overtime?"
