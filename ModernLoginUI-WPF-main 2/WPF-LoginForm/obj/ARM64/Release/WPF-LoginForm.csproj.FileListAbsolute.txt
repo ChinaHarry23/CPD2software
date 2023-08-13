@@ -1,0 +1,17 @@
+\\Mac\Home\Desktop\ModernLoginUI-WPF-main\WPF-LoginForm\bin\ARM64\Release\WPF-LoginForm.exe.config
+\\Mac\Home\Desktop\ModernLoginUI-WPF-main\WPF-LoginForm\bin\ARM64\Release\WPF-LoginForm.exe
+\\Mac\Home\Desktop\ModernLoginUI-WPF-main\WPF-LoginForm\bin\ARM64\Release\WPF-LoginForm.pdb
+\\Mac\Home\Desktop\ModernLoginUI-WPF-main\WPF-LoginForm\obj\ARM64\Release\WPF-LoginForm.csproj.AssemblyReference.cache
+\\Mac\Home\Desktop\ModernLoginUI-WPF-main\WPF-LoginForm\obj\ARM64\Release\MainWindow.g.cs
+\\Mac\Home\Desktop\ModernLoginUI-WPF-main\WPF-LoginForm\obj\ARM64\Release\View\LoginView.g.cs
+\\Mac\Home\Desktop\ModernLoginUI-WPF-main\WPF-LoginForm\obj\ARM64\Release\App.g.cs
+\\Mac\Home\Desktop\ModernLoginUI-WPF-main\WPF-LoginForm\obj\ARM64\Release\WPF-LoginForm_MarkupCompile.cache
+\\Mac\Home\Desktop\ModernLoginUI-WPF-main\WPF-LoginForm\obj\ARM64\Release\WPF-LoginForm_MarkupCompile.lref
+\\Mac\Home\Desktop\ModernLoginUI-WPF-main\WPF-LoginForm\obj\ARM64\Release\MainWindow.baml
+\\Mac\Home\Desktop\ModernLoginUI-WPF-main\WPF-LoginForm\obj\ARM64\Release\View\LoginView.baml
+\\Mac\Home\Desktop\ModernLoginUI-WPF-main\WPF-LoginForm\obj\ARM64\Release\WPF-LoginForm.g.resources
+\\Mac\Home\Desktop\ModernLoginUI-WPF-main\WPF-LoginForm\obj\ARM64\Release\WPF_LoginForm.Properties.Resources.resources
+\\Mac\Home\Desktop\ModernLoginUI-WPF-main\WPF-LoginForm\obj\ARM64\Release\WPF-LoginForm.csproj.GenerateResource.cache
+\\Mac\Home\Desktop\ModernLoginUI-WPF-main\WPF-LoginForm\obj\ARM64\Release\WPF-LoginForm.csproj.CoreCompileInputs.cache
+\\Mac\Home\Desktop\ModernLoginUI-WPF-main\WPF-LoginForm\obj\ARM64\Release\WPF-LoginForm.exe
+\\Mac\Home\Desktop\ModernLoginUI-WPF-main\WPF-LoginForm\obj\ARM64\Release\WPF-LoginForm.pdb
